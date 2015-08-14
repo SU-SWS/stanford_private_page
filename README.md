@@ -4,9 +4,8 @@
 Maintainers: [cynmij](https://github.com/cynmij), [cjwest](https://github.com/cjwest)
 [Changelog.txt](CHANGELOG.txt)
 
-This module provides a content type (Stanford Page) that incorporates the Stanford Image Field Collection. It is the de-facto page content type for all Jumpstart products. Included in this module is also a
-This Drupal Features module provides a content type (Stanford Private Page) for providing pages within a site that can be restricted for viewing.
-Using the Content Access module, feature allows the site administrator to use permissions to select who can view and edit the help pages. This is designed to keep the information on these pages available only to selected roles and away from search bots.
+This module provides a content type (Stanford Private Page) that incorporates the Stanford Image Field Collection and file upload. It is essentially the same as the Stanford Page except it is designed to provide pages within a site that can restrict viewing.
+Using the Content Access module, this feature allows the site administrator to use permissions to limit the roles that can view and edit the private pages.
 
 Sub Modules
 ---
