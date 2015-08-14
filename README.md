@@ -9,10 +9,10 @@ Using the Content Access module, this feature allows the site administrator to u
 
 Sub Modules
 ---
-##Stanford Private Page administration
+###Stanford Private Page administration
 A manage content feature which provides an administration page where users can view, sort, search, and filter through Stanford Private Page content.
 
-##Stanford Private Page Section
+###Stanford Private Page Section
 Provides the context and menus to support a private section
 
 Installation
