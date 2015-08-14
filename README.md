@@ -1,2 +1,37 @@
-# stanford_private_page
-Drupal Features module for providing private pages. When used with the Content Access module, this help content type allows the site administrator to use permissions to select who can view and edit the help pages. This is designed to keep the help information available only to selected roles and away from search bots.
+#[Stanford Private Page](https://github.com/SU-SWS/stanford_private_page)
+##### Version: 7.x-1.x
+
+Maintainers: [cynmij](https://github.com/cynmij), [cjwest](https://github.com/cjwest)
+[Changelog.txt](CHANGELOG.txt)
+
+This module provides a content type (Stanford Page) that incorporates the Stanford Image Field Collection. It is the de-facto page content type for all Jumpstart products. Included in this module is also a
+This Drupal Features module provides a content type (Stanford Private Page) for providing pages within a site that can be restricted for viewing.
+Using the Content Access module, feature allows the site administrator to use permissions to select who can view and edit the help pages. This is designed to keep the information on these pages available only to selected roles and away from search bots.
+
+Sub Modules
+---
+##Stanford Private Page administration
+A manage content feature which provides an administration page where users can view, sort, search, and filter through Stanford Private Page content.
+
+##Stanford Private Page Section
+Provides the context and menus to support a private section
+
+Installation
+---
+
+Install this module like any other module. [See Drupal Documentation](https://drupal.org/documentation/install/modules-themes/modules-7)
+
+Configuration
+---
+
+Nothing special needed.
+
+Troubleshooting
+---
+
+If you are experiencing issues with this module try reverting the feature first. If you are still experiencing issues try posting an issue on the GitHub issues page.
+
+Contribution / Collaboration
+---
+
+You are welcome to contribute functionality, bug fixes, or documentation to this module. If you would like to suggest a fix or new functionality you may add a new issue to the GitHub issue queue or you may fork this repository and submit a pull request. For more help please see [GitHub's article on fork, branch, and pull requests](https://help.github.com/articles/using-pull-requests)
