@@ -13,6 +13,26 @@ function stanford_private_page_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'content_access_stanford_private_page';
+  $strongarm->value = array(
+    'view_own' => array(
+      0 => 10,
+      1 => 9,
+      2 => 7,
+      3 => 8,
+    ),
+    'view' => array(
+      0 => 10,
+      1 => 9,
+      2 => 7,
+      3 => 8,
+    ),
+  );
+  $export['content_access_stanford_private_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__stanford_private_page';
   $strongarm->value = array(
     'view_modes' => array(
@@ -108,6 +128,13 @@ function stanford_private_page_strongarm() {
   $strongarm->name = 'node_submitted_stanford_private_page';
   $strongarm->value = 0;
   $export['node_submitted_stanford_private_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_stanford_private_page_pattern';
+  $strongarm->value = 'private/[node:title]';
+  $export['pathauto_node_stanford_private_page_pattern'] = $strongarm;
 
   return $export;
 }
