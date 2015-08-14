@@ -15,5 +15,4 @@ features[ctools][] = context:context:3
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[menu_custom][] = menu-menu-private-pages
-features[variable][] = menu_options_stanford_private_page
 project path = sites/all/modules/stanford/stanford_private_page/modules
