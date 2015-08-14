@@ -31,7 +31,7 @@ function stanford_private_page_node_info() {
     'stanford_private_page' => array(
       'name' => t('Private Page'),
       'base' => 'node_content',
-      'description' => '',
+      'description' => t('Similar in structure to the Stanford Page, with the Content Access module the Stanford Private Page provides pages within a site that can have restricted viewing privileges. It has an image field collection, image insert, and a file insert. By default the Stanford Private Page URL starts with /private.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
