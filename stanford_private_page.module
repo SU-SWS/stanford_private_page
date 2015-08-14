@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Code for the Stanford Private page feature.
+ * Code for the Stanford Private Page feature.
  */
 
 include_once 'stanford_private_page.features.inc';
