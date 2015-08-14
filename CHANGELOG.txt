@@ -1,0 +1,13 @@
+Stanford Private Page x.x-x.x, xxxx-xx-xx
+----------------------------------------
+
+
+
+Stanford Private Page 7.x-1.0-alpha1, 2015-08-14
+-----------------------------------------------
+Initial release:
+Main feature:
+ - Private Page Content type
+Sub features:
+ - Administration (manage content)
+ - Private Section (creates section on site with two contexts and private page menu)
