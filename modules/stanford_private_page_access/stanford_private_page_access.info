@@ -10,4 +10,4 @@ dependencies[] = content_access
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[variable][] = content_access_stanford_private_page
-project path = sites/all/modules/stanford/stanford_private_page/modules
+files[] = stanford_private_page_access.install

@@ -7,10 +7,10 @@
  */
 
 /**
- * Implements hook_update_N().
- * Rebuild Node Access Records for private pages
+ * Implements hook_install().
+ * Rebuild Node Access Records
  */
-function stanford_private_page_access_update_7100() {
+function stanford_private_page_access_install() {
   module_load_include('inc', 'content_access', 'content_access.admin');
   node_access_rebuild();
 
