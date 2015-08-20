@@ -14,7 +14,11 @@ function stanford_private_page_access_install() {
   module_load_include('inc', 'content_access', 'content_access.admin');
   node_access_rebuild();
 
-  drupal_set_message('Permissions have been successfully rebuilt.');
+  drupal_set_message(
+    "We noticed that you installed Stanford Private Page."
+    . "Would you like to enable the Always Visible module? "
+    . "Always Visible allows anonymous users to see selected menu items which link to  private pages"
+  );
   /*
   $types = array('stanford_private_page');
   module_load_include('inc', 'content_access', 'content_access.admin');
