@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Stanford Private Page Access install file.
+ * @author Caryl Westerberg <cjwest@stanford.edu>
+ */
+
+/**
+ * Implements hook_update_N().
+ * Rebuild Node Access Records for private pages
+ */
+function stanford_private_page_access_update_7100() {
+  module_load_include('inc', 'content_access', 'content_access.admin');
+  node_access_rebuild();
+
+  drupal_set_message('Permissions have been successfully rebuilt.');
+  /*
+  $types = array('stanford_private_page');
+  module_load_include('inc', 'content_access', 'content_access.admin');
+
+  if (content_access_mass_update($types)) {
+    drupal_set_message(
+      'Permissions have been successfully rebuilt for the content type @types.',
+       array('@types' => $types));
+
+  }
+  */
+}

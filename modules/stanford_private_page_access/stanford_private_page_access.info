@@ -6,6 +6,7 @@ version = 7.x-1.0
 dependencies[] = ctools
 dependencies[] = stanford_private_page
 dependencies[] = strongarm
+dependencies[] = content_access
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[variable][] = content_access_stanford_private_page
