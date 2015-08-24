@@ -15,9 +15,9 @@ function stanford_private_page_access_install() {
   node_access_rebuild();
 
   drupal_set_message(
-    "We noticed that you installed Stanford Private Page."
+    "We noticed that you installed Stanford Private Page. "
+    . "Always Visible allows anonymous users to see selected menu items which link to  private pages. "
     . "Would you like to enable the Always Visible module? "
-    . "Always Visible allows anonymous users to see selected menu items which link to  private pages"
   );
   /*
   $types = array('stanford_private_page');
