@@ -1,0 +1,16 @@
+a.private-link, .private-link a {
+    text-transform: none;
+    display: inline;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+a.private-link:before, .private-link a:before {
+    content:"& ";
+}
+a.private-link:hover, a.private-link:focus, .private-link a:hover, .private-link a:focus {
+}
+.view > .private-link {
+    display: block;
+}
+p a.private-link {border-bottom:0;}
