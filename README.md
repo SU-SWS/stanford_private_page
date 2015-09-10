@@ -1,7 +1,7 @@
 #[Stanford Private Page](https://github.com/SU-SWS/stanford_private_page)
 ##### Version: 7.x-1.x
 
-Maintainers: [cynmij](https://github.com/cynmij), [cjwest](https://github.com/cjwest)
+Maintainers: [cynmij](https://github.com/cynmij), [cjwest](https://github.com/cjwest),
 [Changelog.txt](CHANGELOG.txt)
 
 This module provides a content type (Stanford Private Page) that incorporates the Stanford Image Field Collection and file upload. It is essentially the same as the Stanford Page except it is designed to provide pages within a site that can restrict viewing.
@@ -9,11 +9,15 @@ Using the Content Access module, this feature allows the site administrator to u
 
 Sub Modules
 ---
+
+###Stanford Private Page Access
+Provides the configuration settings for content access. This limits access to private pages by role. On installation this rebuilds the permissions.
+
 ###Stanford Private Page administration
 A manage content feature which provides an administration page where users can view, sort, search, and filter through Stanford Private Page content.
 
 ###Stanford Private Page Section
-Provides the context and menus to support a private section
+Provides the context and menus to support a private section.
 
 Installation
 ---
