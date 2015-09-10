@@ -19,3 +19,4 @@ function stanford_private_page_install() {
 function stanford_private_page_uninstall() {
   variable_del('stanford_stanford_private_page_settings');
 }
+

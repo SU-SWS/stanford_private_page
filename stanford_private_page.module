@@ -135,3 +135,20 @@ function stanford_private_page_preprocess_node(&$vars) {
   }
 }
 
+function stanford_private_page_wysiwyg_editor_settings_alter(&$settings, $context) {
+  // add editor CSS to fix overflow issue.
+  $editor_css = url(drupal_get_path('module', 'stanford_private_page') . '/css/stanford_private_page.css');
+  $settings['contentsCss'][] = $editor_css;
+
+  if ($context['profile']->format == "content_editor_text_format") {
+    // Add breakout box to the style set.
+    $settings['stylesSet'][] = array(
+      'name' => t('Private Page Link'),
+      'element' => 'a',
+      'attributes' => array(
+        'class' => 'private-link',
+      ),
+    );
+  }
+
+}
