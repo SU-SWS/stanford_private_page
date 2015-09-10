@@ -27,7 +27,9 @@ Install this module like any other module. [See Drupal Documentation](https://dr
 Configuration
 ---
 
-Nothing special needed.
+You can configure settings at admin/stanford/private-page. Here you can:
+* indicate whether or not a message displays on the private page
+* set the message that displays on the private page
 
 Troubleshooting
 ---
