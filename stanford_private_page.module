@@ -123,14 +123,16 @@ function stanford_private_page_permission() {
 }
 
 /**
- * Implements hook_preprocess_node().
+ * Implements hook_preprocess_page().
  */
-function stanford_private_page_preprocess_node(&$vars) {
-
-  if ($vars["type"] == "stanford_private_page") {
-    $settings = stanford_private_page_get_settings();
-    if ($settings['display_message'] == TRUE) {
-      drupal_set_message("<p class='private-link'>" . $settings['message'] . '</p>');
+function stanford_private_page_preprocess_page(&$vars) {
+  if (isset($vars['node'])) {
+    $node = $vars['node'];
+    if ($node->type == "stanford_private_page") {
+      $settings = stanford_private_page_get_settings();
+      if ($settings['display_message'] == TRUE) {
+       drupal_set_message("<p class='private-link'>" . $settings['message'] . '</p>', 'status', FALSE);
+      }
     }
   }
 }
