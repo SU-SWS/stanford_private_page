@@ -5,3 +5,133 @@
  */
 
 include_once 'stanford_private_page.features.inc';
+
+/**
+ * Implements hook_help().
+ */
+function stanford_private_page_help($path, $arg) {
+
+  if ($path == 'admin/help#stanford_private_page') {
+    $output = '<h3>' . t('About the Stanford Private Page') . '</h3>';
+    $output .= '<p>' . t('The Stanford Private Page module allows you use roles to limit who can view Private Pages.') . '</p>';
+    $output .= l(t("See README.md"), drupal_get_path('module', 'stanford_private_page') . '/README.md');
+    return $output;
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function stanford_private_page_menu() {
+
+  $items['admin/stanford/private-page'] = array(
+    'title' => 'Settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('stanford_private_page_settings_form'),
+    'access arguments' => array('administer private page settings'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * [stanford_private_page_settings_form description]
+ * @param  [type] $form       [description]
+ * @param  [type] $form_state [description]
+ * @return [type]             [description]
+ */
+function stanford_private_page_settings_form($form, &$form_state) {
+
+  // Get the previous settings
+  $settings = stanford_private_page_get_settings();
+
+  $form['settings'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Settings for Private Pages'),
+  );
+
+  // Should the private page message display at all?
+  $form['settings']['display_message'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Display private page message.'),
+    '#description' => t('This indicates if the message will appear on private pages.'),
+    '#default_value' => $settings['display_message'],
+    '#required' => TRUE,
+  );
+
+  // This is the message to display.
+  $form['settings']['message'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Message on private pages'),
+    '#default_value' => $settings['message'],
+    '#size' => 5,
+    '#maxlength' => 300,
+    '#description' => t('This is message will appear on private pages.'),
+    '#required' => TRUE,
+  );
+
+  // and submit the form.
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save'),
+  );
+
+  return $form;
+}
+
+/**
+ * Default settings wrapper for variable_get
+ * @return [type] [description]
+ */
+function stanford_private_page_get_settings() {
+  $default_settings = array(
+    'display_message' => TRUE,
+    'message' => t('You are viewing a private page'),
+  );
+  $settings = variable_get('stanford_stanford_private_page_settings', $default_settings );
+
+  return $settings;
+}
+
+/**
+ * [stanford_jumpstart_help_settings_form_submit description]
+ * @param  [type] $form       [description]
+ * @param  [type] $form_state [description]
+ * @return [type]             [description]
+ */
+function stanford_private_page_settings_form_submit($form, &$form_state) {
+  $values = $form_state['values'];
+  $settings = stanford_private_page_get_settings();
+  $new_settings = array_merge($settings, $values);
+
+  $new_settings['message'] = filter_xss($new_settings['message']);
+
+  variable_set('stanford_stanford_private_page_settings', $new_settings);
+
+  drupal_set_message('Your settings have been saved.');
+}
+/*
+ * Implements hook_permission().
+ */
+function stanford_private_page_permission() {
+  return array(
+    'administer private page settings' => array(
+      'title' => t('Administer Private Page Settings'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function stanford_private_page_preprocess_node(&$vars) {
+
+  if ($vars["type"] == "stanford_private_page") {
+    $settings = stanford_private_page_get_settings();
+    if ($settings['display_message'] == TRUE) {
+      drupal_set_message("<p class='private-link'>" . $settings['message'] . '</p>');
+    }
+  }
+}
+

@@ -1,0 +1,21 @@
+<?php
+/**
+ * Install tasks.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function stanford_private_page_install() {
+
+  // Let's keep the default settings defined in only one place
+  $settings = stanford_private_page_get_settings();
+  variable_set('stanford_stanford_private_page_settings', $settings);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function stanford_private_page_uninstall() {
+  variable_del('stanford_stanford_private_page_settings');
+}
