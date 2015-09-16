@@ -145,7 +145,7 @@ function stanford_private_page_wysiwyg_editor_settings_alter(&$settings, $contex
   if ($context['profile']->format == "content_editor_text_format") {
     // Add breakout box to the style set.
     $settings['stylesSet'][] = array(
-      'name' => t('Private Page Link'),
+      'name' => t('Private Link'),
       'element' => 'a',
       'attributes' => array(
         'class' => 'private-link',
