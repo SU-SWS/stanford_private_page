@@ -1,4 +1,5 @@
-a.private-link, .private-link a {
+a.private-link,
+.private-link a {
     text-transform: none;
     display: inline;
     font-size: 16px;
@@ -6,10 +7,30 @@ a.private-link, .private-link a {
     letter-spacing: 0;
 }
 
-a.private-link:hover, a.private-link:focus, .private-link a:hover, .private-link a:focus {
+.node-type-stanford-private-page #main-content h1 {
+    background-image: url("https://sites.stanford.edu/jse-dev/sites/default/files/_dark_object_large_1.png");
+    background-position: 0 center;
+    background-repeat: no-repeat;
+    padding: 4px 0 0 45px;
+    margin-top: -8px;
 }
+
+a.private-link {
+    background-image: url("https://sites.stanford.edu/jse-dev/sites/default/files/_dark_object_small_1.png");
+    background-position: 2px center;
+    background-repeat: no-repeat;
+    padding: 0 0 0 15px;
+}
+
+a.private-link:hover,
+a.private-link:focus,
+.private-link a:hover,
+.private-link a:focus {}
+
 .view > .private-link {
     display: block;
 }
 
-p a.private-link {border-bottom:0;}
+p a.private-link {
+    border-bottom: 0;
+}
