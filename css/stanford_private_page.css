@@ -41,7 +41,7 @@ a.private-link::after {
 
 a.btn.private-link::after {
     content: " ";
-    background-image: url("https://sites.stanford.edu/jse-dev/sites/default/files/light-object-small.png");
+    background-image: url("../img/light-object-small.png");
     background-position: 7px center;
     background-repeat: no-repeat;
     padding: 0 0 0 17px;
