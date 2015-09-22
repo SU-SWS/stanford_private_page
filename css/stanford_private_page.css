@@ -8,7 +8,7 @@ a.private-link,
 }
 
 .node-type-stanford-private-page #main-content h1 {
-    background-image: url("https://sites.stanford.edu/jse-dev/sites/default/files/_dark-object-large.png");
+    background-image: url("../img/dark-object-large.png");
     background-position: 0 center;
     background-repeat: no-repeat;
     padding: 4px 0 0 45px;
@@ -17,7 +17,7 @@ a.private-link,
 
 a.private-link::after {
     content: " ";
-    background-image: url("https://sites.stanford.edu/jse-dev/sites/default/files/_dark-object-small.png");
+    background-image: url("../img/dark-object-small.png");
     background-position: 2px center;
     background-repeat: no-repeat;
     padding: 0 0 0 15px;
@@ -25,7 +25,7 @@ a.private-link::after {
 
 .block-menu a.private-link::after {
     content: " ";
-    background-image: url("https://sites.stanford.edu/jse-dev/sites/default/files/_dark-object-small.png");
+    background-image: url("../img/dark-object-small.png");
     background-position: 5px center;
     background-repeat: no-repeat;
     padding: 0 0 0 15px;
@@ -33,7 +33,7 @@ a.private-link::after {
 
 #block-menu-menu-menu-private-pages a::after {
     content: " ";
-    background-image: url("https://sites.stanford.edu/jse-dev/sites/default/files/_dark-object-small.png");
+    background-image: url("../img/dark-object-small.png");
     background-position: 5px center;
     background-repeat: no-repeat;
     padding: 0 0 0 15px;
