@@ -16,7 +16,12 @@ a.private-link,
 }
 
 a.private-link::after {
-    content: " ";
+    content: "";
+    height: 10px;
+    width: 12px;
+}
+
+/*
     background-image: url("https://sites.stanford.edu/jse-dev/sites/default/files/_dark-object-small.png");
     background-position: 2px center;
     background-repeat: no-repeat;
@@ -38,6 +43,7 @@ a.private-link::after {
     background-repeat: no-repeat;
     padding: 0 0 0 15px;
 }
+/*
 
 .view > .private-link {
     display: block;
