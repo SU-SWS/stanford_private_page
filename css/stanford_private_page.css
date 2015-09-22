@@ -15,16 +15,12 @@ a.private-link,
     margin-top: -8px;
 }
 
-a.private-link::before {
+a.private-link::after {
     content: " ";
     background-image: url("https://sites.stanford.edu/jse-dev/sites/default/files/_dark-object-small.png");
     background-position: 2px center;
     background-repeat: no-repeat;
     padding: 0 0 0 15px;
-}
-
-.block-menu a.private-link::before {
-    content: none;
 }
 
 .block-menu a.private-link::after {
