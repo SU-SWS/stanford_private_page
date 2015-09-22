@@ -35,6 +35,14 @@ a.private-link::before {
     padding: 0 0 0 15px;
 }
 
+#block-menu-menu-menu-private-pages a::after {
+    content: " ";
+    background-image: url("https://sites.stanford.edu/jse-dev/sites/default/files/_dark-object-small.png");
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    padding: 0 0 0 15px;
+}
+
 .view > .private-link {
     display: block;
 }
