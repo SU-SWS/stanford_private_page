@@ -23,10 +23,17 @@ a.private-link::before {
     padding: 0 0 0 15px;
 }
 
-a.private-link:hover,
-a.private-link:focus,
-.private-link a:hover,
-.private-link a:focus {}
+.block-menu a.private-link::before {
+    content: none;
+}
+
+.block-menu a.private-link::after {
+    content: " ";
+    background-image: url("https://sites.stanford.edu/jse-dev/sites/default/files/_dark-object-small.png");
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    padding: 0 0 0 15px;
+}
 
 .view > .private-link {
     display: block;
