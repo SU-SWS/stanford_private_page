@@ -57,7 +57,6 @@ function stanford_private_page_settings_form($form, &$form_state) {
     '#title' => t('Display private page message.'),
     '#description' => t('This indicates if the message will appear on private pages.'),
     '#default_value' => $settings['display_message'],
-    '#required' => TRUE,
   );
 
   // This is the message to display.
@@ -68,7 +67,6 @@ function stanford_private_page_settings_form($form, &$form_state) {
     '#size' => 5,
     '#maxlength' => 300,
     '#description' => t('This is message will appear on private pages.'),
-    '#required' => TRUE,
   );
 
   // and submit the form.
