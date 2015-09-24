@@ -88,6 +88,8 @@ function stanford_private_page_get_settings() {
   $default_settings = array(
     'display_message' => TRUE,
     'message' => t('You are viewing a private page'),
+    'internal_login_title' => t('Internal Login'),
+    'internal_login_url' => 'private',
   );
   $settings = variable_get('stanford_stanford_private_page_settings', $default_settings );
 
@@ -95,7 +97,7 @@ function stanford_private_page_get_settings() {
 }
 
 /**
- * [stanford_jumpstart_help_settings_form_submit description]
+ * [stanford_private_page_settings_form_submit description]
  * @param  [type] $form       [description]
  * @param  [type] $form_state [description]
  * @return [type]             [description]
@@ -106,6 +108,8 @@ function stanford_private_page_settings_form_submit($form, &$form_state) {
   $new_settings = array_merge($settings, $values);
 
   $new_settings['message'] = filter_xss($new_settings['message']);
+  $new_settings['internal_login_title'] = filter_xss($new_settings['internal_login_title']);
+  $new_settings['internal_login_url'] = filter_xss($new_settings['internal_login_url']);
 
   variable_set('stanford_stanford_private_page_settings', $new_settings);
 
@@ -153,4 +157,107 @@ function stanford_private_page_wysiwyg_editor_settings_alter(&$settings, $contex
     );
   }
 
+}
+
+
+/**
+ * Implements hook_block_info().
+ */
+function stanford_private_page_block_info() {
+  $blocks = array();
+  $blocks['stanford_internal_login'] = array(
+    'info' => t('Stanford Private Page Internal Login'),
+  );
+
+  return $blocks;
+}
+/**
+ * Implements hook_block_configure().
+ */
+function stanford_private_page_block_configure($delta='') {
+  $form = array();
+
+  switch($delta) {
+    case 'stanford_internal_login' :
+      $settings = stanford_private_page_get_settings();
+
+      // Title
+      $form['internal_login_title'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Internal Login Button Title'),
+        '#default_value' => $settings['internal_login_title'],
+        '#required' => TRUE,
+      );
+
+      // URL
+      $form['internal_login_url'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Internal Login Button URL'),
+        '#default_value' => $settings['internal_login_url'],
+        '#required' => TRUE,
+      );
+
+      break;
+  }
+  return $form;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function stanford_private_page_block_save($delta = '', $edit = array()) {
+  switch($delta) {
+    case 'stanford_internal_login' :
+
+      $settings = stanford_private_page_get_settings();
+      $new_settings = array_merge($settings, $edit);
+
+      $new_settings['internal_login_title'] = filter_xss($new_settings['internal_login_title']);
+      $new_settings['internal_login_url'] = filter_xss($new_settings['internal_login_url']);
+
+      variable_set('stanford_stanford_private_page_settings', $new_settings);
+
+      /*
+      // Saving the WYSIWYG text
+      variable_set('text_variable', $edit['text_body']['value']);
+
+      // Saving the file, setting it to a permanent state, setting a FID variable
+      $file = file_load($edit['file']);
+      $file->status = FILE_STATUS_PERMANENT;
+      file_save($file);
+      $block = block_load('custom_block', $delta);
+      file_usage_add($file, 'custom_block', 'block', $block->bid);
+      variable_set('block_image_fid', $file->fid);
+      */
+      break;
+  }
+}
+/**
+ * Implements hook_block_view().
+ */
+function stanford_private_page_block_view($delta='') {
+  $block = array();
+
+  switch($delta) {
+    case 'stanford_internal_login' :
+      $block['content'] = stanford_internal_login_block_view();
+      break;
+  }
+
+  return $block;
+}
+
+function stanford_internal_login_block_view()
+{
+  $block = array();
+  $settings = stanford_private_page_get_settings();
+  $block = array(
+    'internal_login_link' => array(
+      '#type' => 'markup',
+      '#markup' => l($settings['internal_login_title'],
+        $settings['internal_login_url'],
+        array('attributes' => array('class' => 'private-link'))),
+    ),
+  );
+  return $block;
 }
