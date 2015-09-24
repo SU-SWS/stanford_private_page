@@ -216,19 +216,6 @@ function stanford_private_page_block_save($delta = '', $edit = array()) {
       $new_settings['internal_login_url'] = filter_xss($new_settings['internal_login_url']);
 
       variable_set('stanford_stanford_private_page_settings', $new_settings);
-
-      /*
-      // Saving the WYSIWYG text
-      variable_set('text_variable', $edit['text_body']['value']);
-
-      // Saving the file, setting it to a permanent state, setting a FID variable
-      $file = file_load($edit['file']);
-      $file->status = FILE_STATUS_PERMANENT;
-      file_save($file);
-      $block = block_load('custom_block', $delta);
-      file_usage_add($file, 'custom_block', 'block', $block->bid);
-      variable_set('block_image_fid', $file->fid);
-      */
       break;
   }
 }
@@ -256,7 +243,7 @@ function stanford_internal_login_block_view()
       '#type' => 'markup',
       '#markup' => l($settings['internal_login_title'],
         $settings['internal_login_url'],
-        array('attributes' => array('class' => 'private-link'))),
+        array('attributes' => array('class' => 'private-link btn'))),
     ),
   );
   return $block;
