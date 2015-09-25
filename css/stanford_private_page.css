@@ -40,11 +40,11 @@ a.private-link::after {
 }
 
 a.btn.private-link::after {
-    content: " ";
+    content: "";
     background-image: url("../img/light-object-small.png");
-    background-position: 7px center;
+    background-position: 6px center;
     background-repeat: no-repeat;
-    padding: 0 0 0 17px;
+    padding: 0 0 0 16px;
 }
 
 .view > .private-link {
