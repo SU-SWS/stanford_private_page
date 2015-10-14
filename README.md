@@ -1,5 +1,5 @@
 #[Stanford Private Page](https://github.com/SU-SWS/stanford_private_page)
-##### Version: 7.x-1.x
+##### Version: 7.x-1.0
 
 Maintainers: [cynmij](https://github.com/cynmij), [cjwest](https://github.com/cjwest),
 [Changelog.txt](CHANGELOG.txt)
