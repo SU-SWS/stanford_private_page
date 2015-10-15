@@ -1,7 +1,8 @@
 #[Stanford Private Page](https://github.com/SU-SWS/stanford_private_page)
 ##### Version: 7.x-1.0
 
-Maintainers: [cynmij](https://github.com/cynmij), [cjwest](https://github.com/cjwest),
+Maintainers: [cynmij](https://github.com/cynmij) and [cjwest](https://github.com/cjwest)
+
 [Changelog.txt](CHANGELOG.txt)
 
 This module provides a content type (Stanford Private Page) that incorporates the Stanford Image Field Collection and file upload. It is essentially the same as the Stanford Page except it is designed to provide pages within a site that can restrict viewing.
