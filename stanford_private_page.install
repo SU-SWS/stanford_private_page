@@ -11,6 +11,18 @@ function stanford_private_page_install() {
   // Let's keep the default settings defined in only one place
   $settings = stanford_private_page_get_settings();
   variable_set('stanford_stanford_private_page_settings', $settings);
+  // Setting access permissions for roles if they exist
+  $roles = array('administrator', 'site owner', 'editor', 'site member');
+  $caspp = array();
+  $rids = array();
+  foreach($roles as $role_name) {
+    $role = user_role_load_by_name($role_name);
+    if(isset($role->rid)) {
+      $rids[] = $role->rid;
+    }
+  }
+  $caspp = array('view_own' => $rids, 'view' => $rids);
+  variable_set('content_access_stanford_private_page', $caspp);
 }
 
 /**
@@ -18,5 +30,5 @@ function stanford_private_page_install() {
  */
 function stanford_private_page_uninstall() {
   variable_del('stanford_stanford_private_page_settings');
+  variable_set('content_access_stanford_private_page', array());
 }
-
