@@ -15,6 +15,10 @@ a.private-link,
     margin-top: -8px;
 }
 
+.style-custom-styles-dark .node-type-stanford-private-page #main-content h1 {
+    background-image: url("../img/light-object-large.png");
+}
+
 a.private-link::after {
     content: " ";
     background-image: url("../img/dark-object-small.png");
@@ -37,6 +41,12 @@ a.private-link::after {
     background-position: 5px center;
     background-repeat: no-repeat;
     padding: 0 0 0 15px;
+}
+
+.style-custom-styles-contrast #block-menu-menu-menu-private-pages a::after,
+.style-custom-styles-bright #block-menu-menu-menu-private-pages a::after,
+.style-custom-styles-dark #block-menu-menu-menu-private-pages a::after {
+    background-image: url("../img/light-object-small.png");
 }
 
 a.btn.private-link::after {
