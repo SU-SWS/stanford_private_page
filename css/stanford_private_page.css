@@ -1,66 +1,66 @@
 a.private-link,
 .private-link a {
-    text-transform: none;
-    display: inline;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0;
+  text-transform: none;
+  display: inline;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
 .node-type-stanford-private-page #main-content h1 {
-    background-image: url("../img/dark-object-large.png");
-    background-position: 0 center;
-    background-repeat: no-repeat;
-    padding: 4px 0 0 45px;
-    margin-top: -8px;
+  background-image: url("../img/dark-object-large.png");
+  background-position: 0 center;
+  background-repeat: no-repeat;
+  padding: 4px 0 0 45px;
+  margin-top: -8px;
 }
 
 .style-custom-styles-dark .node-type-stanford-private-page #main-content h1 {
-    background-image: url("../img/light-object-large.png");
+  background-image: url("../img/light-object-large.png");
 }
 
 a.private-link::after {
-    content: " ";
-    background-image: url("../img/dark-object-small.png");
-    background-position: 2px center;
-    background-repeat: no-repeat;
-    padding: 0 0 0 15px;
+  content: " ";
+  background-image: url("../img/dark-object-small.png");
+  background-position: 2px center;
+  background-repeat: no-repeat;
+  padding: 0 0 0 15px;
 }
 
 .block-menu a.private-link::after {
-    content: " ";
-    background-image: url("../img/dark-object-small.png");
-    background-position: 5px center;
-    background-repeat: no-repeat;
-    padding: 0 0 0 15px;
+  content: " ";
+  background-image: url("../img/dark-object-small.png");
+  background-position: 5px center;
+  background-repeat: no-repeat;
+  padding: 0 0 0 15px;
 }
 
 #block-menu-menu-menu-private-pages a::after {
-    content: " ";
-    background-image: url("../img/dark-object-small.png");
-    background-position: 5px center;
-    background-repeat: no-repeat;
-    padding: 0 0 0 15px;
+  content: " ";
+  background-image: url("../img/dark-object-small.png");
+  background-position: 5px center;
+  background-repeat: no-repeat;
+  padding: 0 0 0 15px;
 }
 
 .style-custom-styles-contrast #block-menu-menu-menu-private-pages a::after,
 .style-custom-styles-bright #block-menu-menu-menu-private-pages a::after,
 .style-custom-styles-dark #block-menu-menu-menu-private-pages a::after {
-    background-image: url("../img/light-object-small.png");
+  background-image: url("../img/light-object-small.png");
 }
 
 a.btn.private-link::after {
-    content: "";
-    background-image: url("../img/light-object-small.png");
-    background-position: 6px center;
-    background-repeat: no-repeat;
-    padding: 0 0 0 16px;
+  content: "";
+  background-image: url("../img/light-object-small.png");
+  background-position: 6px center;
+  background-repeat: no-repeat;
+  padding: 0 0 0 16px;
 }
 
 .view > .private-link {
-    display: block;
+  display: block;
 }
 
 p a.private-link {
-    border-bottom: 0;
+  border-bottom: 0;
 }
