@@ -15,7 +15,7 @@ a.private-link,
   margin-top: -8px;
 }
 
-.node-type-stanford-private-page.style-custom-styles-dark . #main-content h1 {
+.node-type-stanford-private-page.style-custom-styles-dark #main-content h1 {
   background-image: url("../img/light-object-large.png");
 }
 
