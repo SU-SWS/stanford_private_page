@@ -28,7 +28,6 @@ a.private-link::after {
 }
 
 .style-custom-styles-contrast a.private-link::after,
-.style-custom-styles-bright a.private-link::after,
 .style-custom-styles-dark a.private-link::after {
   background-image: url("../img/light-object-small.png");
 }
