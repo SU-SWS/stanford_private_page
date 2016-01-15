@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Stanford Private Page Access feature.
- */
-
-include_once 'stanford_private_page_access.features.inc';
