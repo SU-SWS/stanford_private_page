@@ -44,6 +44,7 @@ function stanford_private_page_install() {
   $caspp = array('view_own' => $rids, 'view' => $rids);
   $merged = array_merge_recursive_ex($current, $caspp);
   variable_set('content_access_stanford_private_page', $merged);
+  node_access_rebuild();
 }
 
 function array_merge_recursive_ex(array & $array1, array & $array2) {
