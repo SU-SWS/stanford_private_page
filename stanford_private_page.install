@@ -31,19 +31,23 @@ function stanford_private_page_install() {
   $settings = stanford_private_page_get_settings();
   variable_set('stanford_stanford_private_page_settings', $settings);
   // Setting access permissions for roles if they exist.
-  $roles = array('administrator', 'site owner', 'editor', 'site member');
+  $roles = array('site owner', 'editor', 'site member');
   $caspp = array();
   $rids = array();
   foreach ($roles as $role_name) {
     $role = user_role_load_by_name($role_name);
-    if (isset($role->rid)) {
+    if ($role->rid) {
       $rids[] = $role->rid;
     }
+  }
+  if ($admin_role = user_role_load_by_name('administrator')) {
+    $rids[] = $admin_role->rid;
   }
   $current = variable_get('content_access_stanford_private_page', array());
   $caspp = array('view_own' => $rids, 'view' => $rids);
   $merged = array_merge_recursive_ex($current, $caspp);
   variable_set('content_access_stanford_private_page', $merged);
+  node_access_rebuild();
 }
 
 function array_merge_recursive_ex(array & $array1, array & $array2) {
