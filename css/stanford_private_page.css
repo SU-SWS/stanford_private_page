@@ -74,3 +74,16 @@ a.btn.private-link::after {
 p a.private-link {
   border-bottom: 0;
 }
+
+.style-custom-styles-contrast .site-footer a.private-link.btn {
+  color: #ffffff;
+}
+
+.style-custom-styles-rich .site-footer a.private-link.btn {
+  background: #8c1515;
+}
+
+.style-custom-styles-rich .site-footer a.private-link.btn:hover,
+.style-custom-styles-rich .site-footer a.private-link.btn:focus {
+  background: #3f3c30;
+}
