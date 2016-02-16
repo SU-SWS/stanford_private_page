@@ -18,16 +18,12 @@
     // Create the defaults once
     var pluginName = "stanfordPrivatePage";
     var defaults = {
-      spokenText: "Private Page"
+      spokenText: ". Requires login"
     };
 
     // The actual plugin constructor
     function Plugin ( element, options ) {
       this.element = element;
-      // jQuery has an extend method which merges the contents of two or
-      // more objects, storing the result in the first object. The first object
-      // is generally empty as we don't want to alter the default options for
-      // future instances of the plugin
       this.settings = $.extend( {}, defaults, options );
       this._defaults = defaults;
       this._name = pluginName;
@@ -37,15 +33,21 @@
     // Avoid Plugin.prototype conflicts
     $.extend(Plugin.prototype, {
       init: function () {
-        // Place initialization logic here
-        // You already have access to the DOM element and
-        // the options via the instance, e.g. this.element
-        // and this.settings
-        // you can add more functions like the one below and
-        // call them like the example bellow
         // this.yourOtherFunction("jQuery Boilerplate");
 
-        $(this.element).attr("aria-label", this.settings.spokenText);
+        var element = $(this.element);
+        var spokenText = element.text() + " ";
+        var iconText = element.attr("title");
+
+        if (typeof iconText !== "undefined" && iconText.length > 0) {
+          spokenText += iconText;
+        }
+        else {
+          spokenText += this.settings.spokenText;
+        }
+
+        element.attr("aria-label", spokenText);
+        element.removeAttr('alt');
 
       },
       yourOtherFunction: function (text) {
