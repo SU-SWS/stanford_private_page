@@ -3,31 +3,12 @@
  * Install tasks.
  */
 
- /**
- * Implements hook_requirements().
- */
-function stanford_private_page_requirements($phase) {
-  $requirements = array();
-  $t = get_t();
-  if ($phase == 'install') {
-    if (!module_exists('stanford_jumpstart_roles')) {
-      $requirements['stanford_private_page'] = array(
-        'title' => $t('Stanford Private Page'),
-        'description' => $t('Stanford Jumpstart Roles needs installed prior to Stanford Private Page'),
-        'value' => 'Stanford Jumpstart Roles is not enabled',
-        'severity' => REQUIREMENT_ERROR,
-      );
-    }
-  }
-  return $requirements;
-}
-
 /**
  * Implements hook_install().
  */
 function stanford_private_page_install() {
 
-  // Let's keep the default settings defined in only one place
+  // Let's keep the default settings defined in only one place.
   $settings = stanford_private_page_get_settings();
   variable_set('stanford_stanford_private_page_settings', $settings);
   // Setting access permissions for roles if they exist.
@@ -50,16 +31,24 @@ function stanford_private_page_install() {
   node_access_rebuild();
 }
 
+/**
+ * [array_merge_recursive_ex description]
+ * @param  [type] $array1 [description]
+ * @param  [type] $array2 [description]
+ * @return [type]         [description]
+ */
 function array_merge_recursive_ex(array & $array1, array & $array2) {
   $merged = $array1;
   foreach ($array2 as $key => & $value) {
     if (is_array($value) && isset($merged[$key]) && is_array($merged[$key])) {
       $merged[$key] = array_merge_recursive_ex($merged[$key], $value);
-    } elseif (is_numeric($key)) {
+    }
+    elseif (is_numeric($key)) {
       if (!in_array($value, $merged)) {
         $merged[] = $value;
       }
-    } else {
+    }
+    else {
       $merged[$key] = $value;
     }
   }
