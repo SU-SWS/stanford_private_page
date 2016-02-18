@@ -12,7 +12,6 @@ dependencies[] = image
 dependencies[] = stanford_image
 dependencies[] = strongarm
 dependencies[] = text
-dependencies[] = stanford_jumpstart_roles
 stylesheets[all][] = css/stanford_private_page.css
 scripts[] = js/stanford-private-page.js
 scripts[] = js/jquery.stanford-private-page.js
