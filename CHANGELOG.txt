@@ -1,10 +1,16 @@
 Stanford Private Page x.x-x.x, xxxx-xx-xx
 ----------------------------------------
 
+7.x-1.0+26-dev, 2015-10-14
+--------------------------------------------------------------------------------
+- added content access permissions to install
+- added variable merge in case other modules interact with variable
+- added styles for all design options
+- Added dependecy for stanford_jumpstart_roles
+- BASIC-1615: jQuery plugin for private page links and page titles
+
 7.x-1.0, 2015-10-14
 --------------------------------------------------------------------------------
-
-
 
 7.x-1.0-alpha1, 2015-08-14
 -----------------------------------------------
