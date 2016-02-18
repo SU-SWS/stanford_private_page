@@ -4,6 +4,25 @@
  */
 
 /**
+ * Implements hook_requirements().
+ */
+function stanford_private_page_requirements($phase) {
+  $requirements = array();
+  $t = get_t();
+  if ($phase == 'install') {
+    if (module_exists('stanford_jumpstart_roles')) {
+      $requirements['stanford_private_page'] = array(
+        'title' => $t('Stanford Private Page'),
+        'description' => $t('Stanford Jumpstart Roles needs installed prior to Stanford Private Page.'),
+        'value' => 'Stanford Jumpstart Roles module is available.',
+        'severity' => REQUIREMENT_OK,
+      );
+    }
+  }
+  return $requirements;
+}
+
+/**
  * Implements hook_install().
  */
 function stanford_private_page_install() {
