@@ -55,7 +55,16 @@ a.private-link::after {
 
 .style-custom-styles-contrast #block-menu-menu-menu-private-pages a::after,
 .style-custom-styles-bright #block-menu-menu-menu-private-pages a::after,
-.style-custom-styles-dark #block-menu-menu-menu-private-pages a::after {
+.style-custom-styles-dark #block-menu-menu-menu-private-pages a::after,
+.style-custom-styles-vivid #block-menu-menu-menu-private-pages a::after {
+  background-image: url("../img/light-object-small.png");
+}
+
+.style-custom-styles-vivid #block-menu-menu-menu-private-pages a:hover:after {
+  background-image: url("../img/dark-object-small.png");
+}
+
+.style-custom-styles-vivid #block-menu-menu-menu-private-pages .active-trail a:hover:after {
   background-image: url("../img/light-object-small.png");
 }
 
