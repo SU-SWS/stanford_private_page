@@ -67,7 +67,7 @@ a.private-link::after {
 
 .style-custom-styles-vivid #block-menu-menu-menu-private-pages .active-trail a:hover:after,
 .style-custom-styles-vivid #block-menu-menu-menu-private-pages .active-trail a:focus:after {
-  background-image: url("../img/light-object-small.png");
+  background-image: url("../img/dark-object-small.png");
 }
 
 a.btn.private-link::after {
