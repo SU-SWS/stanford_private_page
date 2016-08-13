@@ -12,7 +12,7 @@ include_once 'stanford_private_page.features.inc';
 function stanford_private_page_help($path, $arg) {
 
   if ($path == 'admin/help#stanford_private_page') {
-    $output = '<h3>' . t('About the Stanford Private Page') . '</h3>';
+    $output = '<h3>' . t('About the Stanford Private Page module') . '</h3>';
     $output .= '<p>' . t('The Stanford Private Page module allows you use roles to limit who can view Private Pages.') . '</p>';
     $output .= l(t("See README.md"), drupal_get_path('module', 'stanford_private_page') . '/README.md');
     return $output;
