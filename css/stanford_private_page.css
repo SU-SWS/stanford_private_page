@@ -1,7 +1,7 @@
 a.private-link,
 .private-link a {
   text-transform: none;
-  display: inline;
+  display: inline-flex;
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 0;
