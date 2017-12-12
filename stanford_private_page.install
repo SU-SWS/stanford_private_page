@@ -36,11 +36,13 @@ function array_merge_recursive_ex(array & $array1, array & $array2) {
   foreach ($array2 as $key => & $value) {
     if (is_array($value) && isset($merged[$key]) && is_array($merged[$key])) {
       $merged[$key] = array_merge_recursive_ex($merged[$key], $value);
-    } elseif (is_numeric($key)) {
+    }
+    elseif (is_numeric($key)) {
       if (!in_array($value, $merged)) {
         $merged[] = $value;
       }
-    } else {
+    }
+    else {
       $merged[$key] = $value;
     }
   }
@@ -53,4 +55,92 @@ function array_merge_recursive_ex(array & $array1, array & $array2) {
 function stanford_private_page_uninstall() {
   variable_del('stanford_stanford_private_page_settings');
   variable_set('content_access_stanford_private_page', array());
+}
+
+/**
+ * Move files to private directory.
+ */
+function stanford_private_page_update_7001() {
+  $dir = 'private://';
+  file_prepare_directory($dir, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
+  if (!is_writable($dir)) {
+    throw new DrupalUpdateException('Private directory is not writable.');
+  }
+  $fields = array(
+    'field_s_private_file',
+    'field_s_private_image_insert',
+  );
+
+  $file_paths = array();
+  foreach ($fields as $field_name) {
+    $field_info = field_info_field($field_name);
+    $field_info['settings']['uri_scheme'] = 'private';
+    field_update_field($field_info);
+
+    $query = db_select("field_revision_$field_name", 'f')
+      ->fields('f')
+      ->execute();
+
+    while ($row = $query->fetchAssoc()) {
+      $column = $field_name . '_fid';
+      $fid = $row[$column];
+      if ($file = file_load($fid)) {
+        $new_dir = str_replace('public://', 'private://', $file->uri);
+
+        if ($new_file = file_move($file, $new_dir)) {
+          $file_paths += stanford_private_page_get_paths($file->uri, $new_file->uri, $file->type);
+        }
+      }
+    }
+  }
+
+  foreach ($file_paths as $old_url => $new_url) {
+    db_query("UPDATE field_data_body SET body_value = REPLACE(body_value, '$old_url', '$new_url') where body_value like '%$old_url%'")->execute();
+    db_query("UPDATE field_revision_body SET body_value = REPLACE(body_value, '$old_url', '$new_url') where body_value like '%$old_url%'")->execute();
+  }
+
+}
+
+/**
+ * Get all replacement urls from an old uri to the new uri.
+ *
+ * @param string $old_uri
+ *   Old File URI.
+ * @param string $new_uri
+ *   New file URI.
+ * @param string $file_type
+ *   The type of file: image, document, other.
+ *
+ * @return array
+ *   Keyed array of paths that need to be replaced with old_path => new_path
+ */
+function stanford_private_page_get_paths($old_uri, $new_uri, $file_type) {
+  global $base_url;
+  $paths = array();
+
+  $old_url = file_create_url($old_uri);
+  $old_url = str_replace($base_url, '', $old_url);
+
+  $new_url = file_create_url($new_uri);
+  $new_url = str_replace($base_url, '', $new_url);
+
+  $paths[$old_url] = $new_url;
+
+  if ($file_type != 'image') {
+    return $paths;
+  }
+
+  foreach (image_styles() as $style) {
+    $old_style_uri = image_style_path($style['name'], $old_uri);
+    $old_style = file_create_url($old_style_uri);
+    $old_style = str_replace($base_url, '', $old_style);
+
+    $new_style_uri = image_style_path($style['name'], $new_uri);
+    $new_style = file_create_url($new_style_uri);
+    $new_style = str_replace($base_url, '', $new_style);
+
+    $paths[$old_style] = "$new_style?itok=" . image_style_path_token($style['name'], $new_style_uri);
+  }
+
+  return $paths;
 }
