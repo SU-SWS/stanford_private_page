@@ -1,5 +1,7 @@
 <?php
+
 /**
+ * @file
  * Install tasks.
  */
 
@@ -8,7 +10,7 @@
  */
 function stanford_private_page_enable() {
 
-  // Let's keep the default settings defined in only one place
+  // Let's keep the default settings defined in only one place.
   $settings = stanford_private_page_get_settings();
   variable_set('stanford_stanford_private_page_settings', $settings);
   // Setting access permissions for roles if they exist.
