@@ -107,6 +107,19 @@ function stanford_private_page_update_7001() {
 }
 
 /**
+ * Move field collection images to private directory.
+ */
+function stanford_private_page_update_7002() {
+  $query = db_query("select i.field_s_image_image_fid from field_revision_field_s_image_image i right join field_revision_field_s_image_info f on f.field_s_image_info_value = i.entity_id where f.entity_type = 'node' and f.bundle ='stanford_private_page'");
+  while ($fid = $query->fetchField()) {
+    if ($file = file_load($fid)) {
+      $destination = str_replace('public://', 'private://', $file->uri);
+      file_move($file, $destination);
+    }
+  }
+}
+
+/**
  * Get all replacement urls from an old uri to the new uri.
  *
  * @param string $old_uri
