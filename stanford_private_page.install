@@ -61,11 +61,13 @@ function stanford_private_page_uninstall() {
  * Move files to private directory.
  */
 function stanford_private_page_update_7001() {
+  // Check if private directory is writable first.
   $dir = 'private://';
   file_prepare_directory($dir, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
   if (!is_writable($dir)) {
     throw new DrupalUpdateException('Private directory is not writable.');
   }
+
   $fields = array(
     'field_s_private_file',
     'field_s_private_image_insert',
@@ -82,11 +84,13 @@ function stanford_private_page_update_7001() {
       ->execute();
 
     while ($row = $query->fetchAssoc()) {
+      // Get the fid and load the original file.
       $column = $field_name . '_fid';
       $fid = $row[$column];
       if ($file = file_load($fid)) {
         $new_dir = str_replace('public://', 'private://', $file->uri);
 
+        // Move the file to the new private directory.
         if ($new_file = file_move($file, $new_dir)) {
           $file_paths += stanford_private_page_get_paths($file->uri, $new_file->uri, $file->type);
         }
@@ -94,6 +98,7 @@ function stanford_private_page_update_7001() {
     }
   }
 
+  // Update any inline body urls.
   foreach ($file_paths as $old_url => $new_url) {
     db_query("UPDATE field_data_body SET body_value = REPLACE(body_value, '$old_url', '$new_url') where body_value like '%$old_url%'")->execute();
     db_query("UPDATE field_revision_body SET body_value = REPLACE(body_value, '$old_url', '$new_url') where body_value like '%$old_url%'")->execute();
@@ -130,6 +135,7 @@ function stanford_private_page_get_paths($old_uri, $new_uri, $file_type) {
     return $paths;
   }
 
+  // Get all image style paths.
   foreach (image_styles() as $style) {
     $old_style_uri = image_style_path($style['name'], $old_uri);
     $old_style = file_create_url($old_style_uri);
@@ -139,7 +145,7 @@ function stanford_private_page_get_paths($old_uri, $new_uri, $file_type) {
     $new_style = file_create_url($new_style_uri);
     $new_style = str_replace($base_url, '', $new_style);
 
-    $paths[$old_style] = "$new_style?itok=" . image_style_path_token($style['name'], $new_style_uri);
+    $paths[$old_style] = $new_style;
   }
 
   return $paths;
