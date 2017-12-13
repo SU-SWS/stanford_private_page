@@ -117,7 +117,7 @@ function stanford_private_page_settings_form_submit($form, &$form_state) {
 
   variable_set('stanford_stanford_private_page_settings', $new_settings);
 
-  drupal_set_message('Your settings have been saved.');
+  drupal_set_message(t('Your settings have been saved.'));
 }
 
 /**
@@ -140,7 +140,7 @@ function stanford_private_page_preprocess_page(&$vars) {
     if ($node->type == "stanford_private_page") {
       $settings = stanford_private_page_get_settings();
       if ($settings['display_message'] == TRUE) {
-        drupal_set_message("<p class='private-link'>" . $settings['message'] . '</p>', 'status', FALSE);
+        drupal_set_message("<p class='private-link'>" . $settings['message'] . '</p>');
       }
     }
   }
