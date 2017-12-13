@@ -70,12 +70,19 @@ function stanford_private_page_update_7001() {
     throw new DrupalUpdateException('Private directory is not writable.');
   }
 
+  db_update('system')
+    ->fields(array('status' => 0))
+    ->condition('name', 'stanford_private_page_administration')
+    ->execute();
+
   $fields = array(
     'field_s_private_file',
     'field_s_private_image_insert',
   );
 
   $file_paths = array();
+
+  $moved_files = array();
   foreach ($fields as $field_name) {
     $field_info = field_info_field($field_name);
     $field_info['settings']['uri_scheme'] = 'private';
@@ -89,8 +96,21 @@ function stanford_private_page_update_7001() {
       // Get the fid and load the original file.
       $column = $field_name . '_fid';
       $fid = $row[$column];
+
+      // Since we are querying the revision table, we have to track files that
+      // have already moved.
+      if (in_array($fid, $moved_files)) {
+        continue;
+      }
+      $moved_files[] = $fid;
+
       if ($file = file_load($fid)) {
         $new_dir = str_replace('public://', 'private://', $file->uri);
+
+        // Make sure the file actually exists.
+        if (!file_exists($file->uri)) {
+          continue;
+        }
 
         // Move the file to the new private directory.
         if ($new_file = file_move($file, $new_dir)) {
@@ -105,7 +125,6 @@ function stanford_private_page_update_7001() {
     db_query("UPDATE field_data_body SET body_value = REPLACE(body_value, '$old_url', '$new_url') where body_value like '%$old_url%'")->execute();
     db_query("UPDATE field_revision_body SET body_value = REPLACE(body_value, '$old_url', '$new_url') where body_value like '%$old_url%'")->execute();
   }
-
 }
 
 /**
@@ -118,6 +137,11 @@ function stanford_private_page_update_7002() {
       $destination = str_replace('public://', 'private://', $file->uri);
       file_move($file, $destination);
     }
+  }
+
+  // Flush image styles to protect derivatives.
+  foreach (image_styles() as $style) {
+    image_style_flush($style);
   }
 }
 
