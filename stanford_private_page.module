@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Code for the Stanford Private Page feature.
@@ -37,13 +38,15 @@ function stanford_private_page_menu() {
 
 /**
  * [stanford_private_page_settings_form description]
+ *
  * @param  [type] $form       [description]
  * @param  [type] $form_state [description]
+ *
  * @return [type]             [description]
  */
 function stanford_private_page_settings_form($form, &$form_state) {
 
-  // Get the previous settings
+  // Get the previous settings.
   $settings = stanford_private_page_get_settings();
 
   $form['settings'] = array(
@@ -69,7 +72,7 @@ function stanford_private_page_settings_form($form, &$form_state) {
     '#description' => t('This is message will appear on private pages.'),
   );
 
-  // and submit the form.
+  // And submit the form.
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Save'),
@@ -79,7 +82,8 @@ function stanford_private_page_settings_form($form, &$form_state) {
 }
 
 /**
- * Default settings wrapper for variable_get
+ * Default settings wrapper for variable_get.
+ *
  * @return [type] [description]
  */
 function stanford_private_page_get_settings() {
@@ -89,15 +93,17 @@ function stanford_private_page_get_settings() {
     'internal_login_title' => t('Internal Login'),
     'internal_login_url' => 'private',
   );
-  $settings = variable_get('stanford_stanford_private_page_settings', $default_settings );
+  $settings = variable_get('stanford_stanford_private_page_settings', $default_settings);
 
   return $settings;
 }
 
 /**
  * [stanford_private_page_settings_form_submit description]
+ *
  * @param  [type] $form       [description]
  * @param  [type] $form_state [description]
+ *
  * @return [type]             [description]
  */
 function stanford_private_page_settings_form_submit($form, &$form_state) {
@@ -111,9 +117,10 @@ function stanford_private_page_settings_form_submit($form, &$form_state) {
 
   variable_set('stanford_stanford_private_page_settings', $new_settings);
 
-  drupal_set_message('Your settings have been saved.');
+  drupal_set_message(t('Your settings have been saved.'));
 }
-/*
+
+/**
  * Implements hook_permission().
  */
 function stanford_private_page_permission() {
@@ -133,14 +140,17 @@ function stanford_private_page_preprocess_page(&$vars) {
     if ($node->type == "stanford_private_page") {
       $settings = stanford_private_page_get_settings();
       if ($settings['display_message'] == TRUE) {
-       drupal_set_message("<p class='private-link'>" . $settings['message'] . '</p>', 'status', FALSE);
+        drupal_set_message("<p class='private-link'>" . $settings['message'] . '</p>');
       }
     }
   }
 }
 
+/**
+ * Implements hook_wysiwyg_editor_settings_alter().
+ */
 function stanford_private_page_wysiwyg_editor_settings_alter(&$settings, $context) {
-  // add editor CSS to fix overflow issue.
+  // Add editor CSS to fix overflow issue.
   $editor_css = url(drupal_get_path('module', 'stanford_private_page') . '/css/stanford_private_page.css');
   $settings['contentsCss'][] = $editor_css;
 
@@ -157,7 +167,6 @@ function stanford_private_page_wysiwyg_editor_settings_alter(&$settings, $contex
 
 }
 
-
 /**
  * Implements hook_block_info().
  */
@@ -169,17 +178,18 @@ function stanford_private_page_block_info() {
 
   return $blocks;
 }
+
 /**
  * Implements hook_block_configure().
  */
-function stanford_private_page_block_configure($delta='') {
+function stanford_private_page_block_configure($delta = '') {
   $form = array();
 
-  switch($delta) {
-    case 'stanford_internal_login' :
+  switch ($delta) {
+    case 'stanford_internal_login':
       $settings = stanford_private_page_get_settings();
 
-      // Title
+      // Title.
       $form['internal_login_title'] = array(
         '#type' => 'textfield',
         '#title' => t('Internal Login Button Title'),
@@ -187,7 +197,7 @@ function stanford_private_page_block_configure($delta='') {
         '#required' => TRUE,
       );
 
-      // URL
+      // URL.
       $form['internal_login_url'] = array(
         '#type' => 'textfield',
         '#title' => t('Internal Login Button URL'),
@@ -204,8 +214,8 @@ function stanford_private_page_block_configure($delta='') {
  * Implements hook_block_save().
  */
 function stanford_private_page_block_save($delta = '', $edit = array()) {
-  switch($delta) {
-    case 'stanford_internal_login' :
+  switch ($delta) {
+    case 'stanford_internal_login':
 
       $settings = stanford_private_page_get_settings();
       $new_settings = array_merge($settings, $edit);
@@ -217,14 +227,15 @@ function stanford_private_page_block_save($delta = '', $edit = array()) {
       break;
   }
 }
+
 /**
  * Implements hook_block_view().
  */
-function stanford_private_page_block_view($delta='') {
+function stanford_private_page_block_view($delta = '') {
   $block = array();
 
-  switch($delta) {
-    case 'stanford_internal_login' :
+  switch ($delta) {
+    case 'stanford_internal_login':
       $block['content'] = stanford_internal_login_block_view();
       break;
   }
@@ -232,9 +243,13 @@ function stanford_private_page_block_view($delta='') {
   return $block;
 }
 
-function stanford_internal_login_block_view()
-{
-  $block = array();
+/**
+ * Internal login block render.
+ *
+ * @return array
+ *   Render array.
+ */
+function stanford_internal_login_block_view() {
   $settings = stanford_private_page_get_settings();
   $block = array(
     'internal_login_link' => array(
@@ -245,4 +260,51 @@ function stanford_internal_login_block_view()
     ),
   );
   return $block;
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function stanford_private_page_entity_insert($entity, $type) {
+  if (
+    $type == 'field_collection_item' &&
+    $entity->field_name == 'field_s_image_info' &&
+    $entity->hostEntityBundle() == 'stanford_private_page'
+  ) {
+    stanford_private_page_move_field_collection_image($entity);
+  }
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function stanford_private_page_entity_update($entity, $type) {
+  if (
+    $type == 'field_collection_item' &&
+    $entity->field_name == 'field_s_image_info' &&
+    $entity->hostEntityBundle() == 'stanford_private_page'
+  ) {
+    stanford_private_page_move_field_collection_image($entity);
+  }
+}
+
+/**
+ * Move public files to private directory.
+ *
+ * @param object $entity
+ *   Field collection on the private page.
+ */
+function stanford_private_page_move_field_collection_image($entity) {
+  $images = field_get_items('field_collection_item', $entity, 'field_s_image_image');
+  if (!is_array($images)) {
+    return;
+  }
+
+  foreach ($images as $image) {
+    $file = file_load($image['fid']);
+    if (file_uri_scheme($file->uri) == 'public') {
+      $new_destination = str_replace('public://', 'private://', $file->uri);
+      file_move($file, $new_destination);
+    }
+  }
 }
