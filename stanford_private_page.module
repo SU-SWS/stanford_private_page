@@ -244,7 +244,10 @@ function stanford_private_page_block_view($delta = '') {
 }
 
 /**
+ * Internal login block render.
+ *
  * @return array
+ *   Render array.
  */
 function stanford_internal_login_block_view() {
   $settings = stanford_private_page_get_settings();
