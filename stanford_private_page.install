@@ -63,6 +63,11 @@ function stanford_private_page_uninstall() {
  * Move files to private directory.
  */
 function stanford_private_page_update_7001() {
+  // Make sure the private path is configured.
+  if (!variable_get('file_private_path', FALSE)) {
+    throw new DrupalUpdateException('Private directory is not configured.');
+  }
+
   // Check if private directory is writable first.
   $dir = 'private://';
   file_prepare_directory($dir, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
