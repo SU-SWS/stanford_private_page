@@ -75,11 +75,6 @@ function stanford_private_page_update_7001() {
     throw new DrupalUpdateException('Private directory is not writable.');
   }
 
-  db_update('system')
-    ->fields(array('status' => 0))
-    ->condition('name', 'stanford_private_page_administration')
-    ->execute();
-
   $fields = array(
     'field_s_private_file',
     'field_s_private_image_insert',
