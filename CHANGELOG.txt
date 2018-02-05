@@ -1,6 +1,10 @@
 Stanford Private Page x.x-x.x, xxxx-xx-xx
 ----------------------------------------
 
+7.x-2.0-alpha3, 2018-02-02
+--------------------------------------------------------------------------------
+- Bug fix for update hook that disabled admin module.
+
 7.x-2.0-alpha2, 2017-12-19
 --------------------------------------------------------------------------------
 - check if the private directory is set
