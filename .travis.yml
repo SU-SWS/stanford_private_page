@@ -63,10 +63,10 @@
 
 env:
   global:
-    - PRODUCT_NAME=""
+    - PRODUCT_NAME="jumpstart-engineering"
     - ENABLE_MODULES=""
     - DISABLE_MODULES="webauth"
-#   - ONLY_TEST=""
+    - ONLY_TEST=""
     - BEHAT_TAG=""
     - DEPLOYER_BRANCH=""
     - DRUPAL_PROFILE_BRANCH=""
