@@ -1,4 +1,4 @@
-#[Stanford Private Page](https://github.com/SU-SWS/stanford_private_page)
+# [Stanford Private Page](https://github.com/SU-SWS/stanford_private_page)
 ##### Version: 7.x-2.0-alpha3
 
 Maintainers: [cynmij](https://github.com/cynmij) and [cjwest](https://github.com/cjwest)
@@ -11,13 +11,13 @@ Using the Content Access module, this feature allows the site administrator to u
 Sub Modules
 ---
 
-###Stanford Private Page Access
+### Stanford Private Page Access
 Provides the configuration settings for content access. This limits access to private pages by role. On installation this rebuilds the permissions.
 
-###Stanford Private Page administration
+### Stanford Private Page administration
 A manage content feature which provides an administration page where users can view, sort, search, and filter through Stanford Private Page content.
 
-###Stanford Private Page Section
+### Stanford Private Page Section
 Provides the context and menus to support a private section.
 
 Installation
