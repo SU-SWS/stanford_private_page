@@ -1,5 +1,5 @@
 # [Stanford Private Page](https://github.com/SU-SWS/stanford_private_page)
-##### Version: 7.x-2.0-alpha3
+##### Version: 7.x-2.0-alpha4
 
 Maintainers: [cynmij](https://github.com/cynmij) and [cjwest](https://github.com/cjwest)
 
