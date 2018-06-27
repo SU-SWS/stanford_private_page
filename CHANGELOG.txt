@@ -1,6 +1,11 @@
 Stanford Private Page x.x-x.x, xxxx-xx-xx
 ----------------------------------------
 
+7.x-2.0-alpha4, 2018-06-27
+--------------------------------------------------------------------------------
+- Added composer.json
+- Added travis.yml
+
 7.x-2.0-alpha3, 2018-02-02
 --------------------------------------------------------------------------------
 - Bug fix for update hook that disabled admin module.

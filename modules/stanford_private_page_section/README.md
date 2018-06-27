@@ -1,5 +1,5 @@
 #Stanford Private Page Section
-##### Version: 7.x-1.1-dev 
+##### Version: 7.x-2.0-alpha4
 
 Maintainers: [cynmij](https://github.com/cynmij), [cjwest](https://github.com/cjwest),
 [Changelog.txt](CHANGELOG.txt)
