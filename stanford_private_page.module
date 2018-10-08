@@ -256,7 +256,7 @@ function stanford_internal_login_block_view() {
       '#type' => 'markup',
       '#markup' => l($settings['internal_login_title'],
         $settings['internal_login_url'],
-        array('attributes' => array('class' => 'private-link btn'))),
+        array('attributes' => array('class' => ['private-link', 'btn']))),
     ),
   );
   return $block;
